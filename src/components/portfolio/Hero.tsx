@@ -1,21 +1,51 @@
+import { useEffect, useState } from "react";
 import { motion } from "motion/react";
-import { ArrowRight, Linkedin } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import heroImage from "@/assets/hero-dev.jpg";
-import { LINKEDIN_URL } from "./data";
+import { roles } from "./data";
+import { GitHubButton, LinkedInButton } from "./SocialButtons";
 
 const stats = [
-  { value: "10+", label: "Projects" },
+  { value: "16", label: "Projects" },
   { value: "4+", label: "UI/UX Designs" },
   { value: "2nd", label: "Year B.Tech" },
 ];
 
-export function Hero() {
-  return (
-    <section id="hero" className="relative overflow-hidden pt-36 pb-24">
-      <div className="pointer-events-none absolute -top-40 -left-32 h-[26rem] w-[26rem] rounded-full bg-primary/25 blur-[120px]" />
-      <div className="pointer-events-none absolute -right-32 top-24 h-[26rem] w-[26rem] rounded-full bg-accent/25 blur-[120px]" />
+function useTypedRole() {
+  const [index, setIndex] = useState(0);
+  const [text, setText] = useState("");
+  const [deleting, setDeleting] = useState(false);
 
-      <div className="mx-auto grid max-w-6xl items-center gap-14 px-5 lg:grid-cols-2">
+  useEffect(() => {
+    const full = roles[index % roles.length] ?? "";
+    const done = !deleting && text === full;
+    const cleared = deleting && text === "";
+
+    const timeout = setTimeout(
+      () => {
+        if (done) return setDeleting(true);
+        if (cleared) {
+          setDeleting(false);
+          setIndex((i) => (i + 1) % roles.length);
+          return;
+        }
+        setText(deleting ? full.slice(0, text.length - 1) : full.slice(0, text.length + 1));
+      },
+      done ? 1400 : deleting ? 45 : 95,
+    );
+
+    return () => clearTimeout(timeout);
+  }, [text, deleting, index]);
+
+  return text;
+}
+
+export function Hero() {
+  const typed = useTypedRole();
+
+  return (
+    <section id="hero" className="relative overflow-hidden pt-40 pb-28">
+      <div className="relative mx-auto grid max-w-6xl items-center gap-16 px-5 lg:grid-cols-2">
         <motion.div
           initial={{ opacity: 0, x: -40 }}
           animate={{ opacity: 1, x: 0 }}
@@ -27,37 +57,36 @@ export function Hero() {
           </span>
 
           <h1 className="mt-6 text-4xl font-bold leading-[1.1] sm:text-5xl lg:text-6xl">
-            HI, I&apos;M <span className="text-gradient">THANIKA</span> 👋
+            HI, I&apos;M <span className="animate-gradient-text">THANIKA</span> 👋
           </h1>
 
-          <p className="mt-5 text-lg font-medium text-foreground/90">
-            Passionate Software Developer and second-year B.Tech IT student.
+          <p className="mt-5 text-xl font-semibold text-foreground/90">
+            I&apos;m a{" "}
+            <span className="text-primary">{typed}</span>
+            <span className="ml-0.5 inline-block h-6 w-[2px] translate-y-1 animate-pulse bg-primary align-middle" />
           </p>
-          <p className="mt-3 max-w-lg text-base leading-relaxed text-muted-foreground">
-            Building web apps and UI/UX designs with a love for data structures and cloud
-            fundamentals.
+          <p className="mt-4 max-w-lg text-base leading-relaxed text-muted-foreground">
+            Passionate Software Developer and second-year B.Tech IT student building web apps and
+            UI/UX designs, with a love for data structures and cloud fundamentals.
           </p>
 
-          <div className="mt-8 flex flex-wrap gap-4">
+          <div className="mt-9 flex flex-wrap gap-4">
             <a
               href="#projects"
-              className="inline-flex items-center gap-2 rounded-full bg-gradient-brand px-6 py-3 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-glow)] transition-transform duration-200 hover:scale-105"
+              className="inline-flex items-center gap-2 rounded-full bg-gradient-brand px-6 py-3 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-glow)] transition-transform duration-300 hover:scale-105"
             >
               View Portfolio <ArrowRight className="h-4 w-4" />
             </a>
-            <a
-              href={LINKEDIN_URL}
-              target="_blank"
-              rel="noreferrer"
-              className="glass inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-transform duration-200 hover:scale-105"
-            >
-              <Linkedin className="h-4 w-4" /> LinkedIn
-            </a>
+            <LinkedInButton />
+            <GitHubButton />
           </div>
 
-          <div className="mt-12 grid max-w-md grid-cols-3 gap-4">
+          <div className="mt-14 grid max-w-md grid-cols-3 gap-4">
             {stats.map((s) => (
-              <div key={s.label} className="glass rounded-2xl px-4 py-5 text-center">
+              <div
+                key={s.label}
+                className="glass gradient-border rounded-2xl px-4 py-5 text-center transition-transform duration-300 hover:-translate-y-1"
+              >
                 <div className="font-display text-2xl font-bold text-gradient">{s.value}</div>
                 <div className="mt-1 text-xs text-muted-foreground">{s.label}</div>
               </div>
@@ -86,14 +115,23 @@ export function Hero() {
           </motion.div>
 
           <motion.div
-            animate={{ y: [0, 24, 0], rotate: [0, 12, 0] }}
-            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-            className="glass absolute -left-6 top-10 h-16 w-16 rounded-2xl"
-          />
+            animate={{ y: [0, 14, 0] }}
+            transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+            className="glass absolute -bottom-8 -left-4 flex items-center gap-3 rounded-3xl p-3 pr-5 sm:-left-8"
+          >
+            <span className="grid h-16 w-16 place-items-center rounded-2xl bg-gradient-brand font-display text-2xl font-bold text-primary-foreground">
+              TS
+            </span>
+            <span>
+              <span className="block text-sm font-semibold">Thanika S</span>
+              <span className="block text-xs text-muted-foreground">Software Developer</span>
+            </span>
+          </motion.div>
+
           <motion.div
             animate={{ y: [0, -22, 0] }}
-            transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute -bottom-6 right-8 h-20 w-20 rounded-full bg-gradient-brand opacity-70 blur-md"
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute -top-6 right-6 h-20 w-20 rounded-full bg-gradient-brand opacity-60 blur-md"
           />
         </motion.div>
       </div>

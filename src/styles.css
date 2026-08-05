@@ -39,28 +39,28 @@
 
 :root {
   --radius: 1rem;
-  --background: oklch(0.13 0.045 276);
-  --foreground: oklch(0.97 0.005 270);
-  --surface: oklch(0.19 0.045 276);
-  --card: oklch(0.19 0.045 276);
-  --card-foreground: oklch(0.97 0.005 270);
-  --popover: oklch(0.17 0.045 276);
-  --popover-foreground: oklch(0.97 0.005 270);
-  --primary: oklch(0.62 0.19 259);
-  --primary-foreground: oklch(0.99 0 0);
-  --secondary: oklch(0.24 0.05 276);
-  --secondary-foreground: oklch(0.97 0.005 270);
-  --muted: oklch(0.24 0.05 276);
-  --muted-foreground: oklch(0.72 0.03 272);
-  --accent: oklch(0.63 0.23 304);
-  --accent-foreground: oklch(0.99 0 0);
+  --background: oklch(0.14 0.03 195);
+  --foreground: oklch(0.97 0.008 180);
+  --surface: oklch(0.2 0.035 190);
+  --card: oklch(0.2 0.035 190);
+  --card-foreground: oklch(0.97 0.008 180);
+  --popover: oklch(0.18 0.035 190);
+  --popover-foreground: oklch(0.97 0.008 180);
+  --primary: oklch(0.75 0.14 182);
+  --primary-foreground: oklch(0.16 0.03 195);
+  --secondary: oklch(0.25 0.04 190);
+  --secondary-foreground: oklch(0.97 0.008 180);
+  --muted: oklch(0.25 0.04 190);
+  --muted-foreground: oklch(0.75 0.025 185);
+  --accent: oklch(0.8 0.19 152);
+  --accent-foreground: oklch(0.16 0.03 195);
   --destructive: oklch(0.62 0.23 25);
   --destructive-foreground: oklch(0.99 0 0);
   --border: oklch(0.99 0 0 / 10%);
   --input: oklch(0.99 0 0 / 12%);
-  --ring: oklch(0.62 0.19 259);
+  --ring: oklch(0.75 0.14 182);
   --gradient-brand: linear-gradient(120deg, var(--primary), var(--accent));
-  --shadow-glow: 0 24px 70px -24px color-mix(in oklab, var(--primary) 60%, transparent);
+  --shadow-glow: 0 24px 70px -24px color-mix(in oklab, var(--primary) 65%, transparent);
 }
 
 @layer base {
@@ -100,4 +100,73 @@
 
 @utility bg-gradient-brand {
   background-image: var(--gradient-brand);
+}
+
+@utility gradient-border {
+  position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      120deg,
+      color-mix(in oklab, var(--primary) 70%, transparent),
+      transparent 40%,
+      color-mix(in oklab, var(--accent) 70%, transparent)
+    );
+    background-size: 200% 200%;
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    animation: border-pan 6s linear infinite;
+    pointer-events: none;
+  }
+  &:hover::before {
+    opacity: 1;
+  }
+}
+
+@utility animate-gradient-text {
+  background-image: linear-gradient(
+    100deg,
+    var(--primary),
+    var(--accent),
+    var(--primary)
+  );
+  background-size: 200% auto;
+  background-clip: text;
+  color: transparent;
+  animation: gradient-pan 6s linear infinite;
+}
+
+@keyframes gradient-pan {
+  to {
+    background-position: 200% center;
+  }
+}
+
+@keyframes border-pan {
+  to {
+    background-position: 200% 50%;
+  }
+}
+
+@keyframes aurora-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(4%, -6%, 0) scale(1.15);
+  }
+}
+
+@utility animate-aurora {
+  animation: aurora-drift 18s ease-in-out infinite;
 }
