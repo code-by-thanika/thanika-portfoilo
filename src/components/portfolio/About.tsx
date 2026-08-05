@@ -1,4 +1,5 @@
 import { motion } from "motion/react";
+import { Code2, Cloud, Palette, Brain } from "lucide-react";
 import { skills } from "./data";
 
 const paragraphs = [
@@ -8,43 +9,43 @@ const paragraphs = [
   "Actively working on innovative projects in web development.",
 ];
 
+const highlights = [
+  { icon: Code2, title: "Development", text: "Web apps with clean, maintainable code." },
+  { icon: Palette, title: "UI/UX Design", text: "Figma prototypes and design systems." },
+  { icon: Brain, title: "Problem Solving", text: "Data structures and algorithms practice." },
+  { icon: Cloud, title: "Cloud Basics", text: "Deployments and cloud fundamentals." },
+];
+
 export function About() {
   return (
-    <section id="about" className="relative py-24">
-      <div className="mx-auto max-w-6xl px-5">
-        <motion.p
+    <section id="about" className="relative py-28">
+      <div className="relative mx-auto max-w-6xl px-5">
+        <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-sm font-semibold uppercase tracking-[0.25em] text-primary"
+          className="text-center"
         >
-          About Me
-        </motion.p>
+          <p className="text-sm font-semibold uppercase tracking-[0.25em] text-primary">About Me</p>
+          <h2 className="mt-3 text-3xl font-bold sm:text-4xl">Who I Am</h2>
+        </motion.div>
 
-        <div className="mt-4 grid gap-12 lg:grid-cols-2">
+        <div className="mt-14 grid gap-8 lg:grid-cols-[1.1fr_1fr]">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
+            className="glass gradient-border rounded-4xl p-8 transition-transform duration-300 hover:-translate-y-1"
           >
-            <h2 className="text-3xl font-bold sm:text-4xl">Who I Am</h2>
-            <div className="mt-6 space-y-4 text-base leading-relaxed text-muted-foreground">
+            <div className="space-y-4 text-base leading-relaxed text-muted-foreground">
               {paragraphs.map((p) => (
                 <p key={p}>{p}</p>
               ))}
             </div>
-          </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="glass rounded-4xl p-7"
-          >
-            <h3 className="text-lg font-semibold">Skills</h3>
+            <h3 className="mt-8 text-lg font-semibold">Skills</h3>
             <div className="mt-5 flex flex-wrap gap-3">
               {skills.map((s) => (
                 <span
@@ -56,6 +57,25 @@ export function About() {
               ))}
             </div>
           </motion.div>
+
+          <div className="grid gap-5 sm:grid-cols-2">
+            {highlights.map((h, i) => (
+              <motion.div
+                key={h.title}
+                initial={{ opacity: 0, y: 26 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.08 }}
+                className="glass gradient-border rounded-3xl p-6 transition-all duration-300 hover:-translate-y-2 hover:shadow-[var(--shadow-glow)]"
+              >
+                <span className="grid h-11 w-11 place-items-center rounded-2xl bg-gradient-brand text-primary-foreground">
+                  <h.icon className="h-5 w-5" />
+                </span>
+                <h4 className="mt-4 text-base font-semibold">{h.title}</h4>
+                <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{h.text}</p>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
