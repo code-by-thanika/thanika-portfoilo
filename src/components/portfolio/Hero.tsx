@@ -17,7 +17,7 @@ function useTypedRole() {
   const [deleting, setDeleting] = useState(false);
 
   useEffect(() => {
-    const full = roles[index % roles.length];
+    const full = roles[index % roles.length] ?? "";
     const done = !deleting && text === full;
     const cleared = deleting && text === "";
 
