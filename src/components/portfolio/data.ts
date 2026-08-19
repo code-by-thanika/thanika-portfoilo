@@ -169,10 +169,16 @@ export const skills = [
   "Cloud Fundamentals",
 ];
 
-export const roles = ["Developer", "Designer", "Creative Thinker", "GDG Member"];
+export const roles = [
+  "Developer",
+  "Designer",
+  "Creative Thinker",
+  "GDG Member",
+  "AI Enthusiast",
+  "Cloud Learner",
+];
 
 export const LINKEDIN_URL =
   "https://www.linkedin.com/in/thanika-senthilkumar-49075a327/";
-export const LINKEDIN_FEED_URL = "https://www.linkedin.com/feed/";
-export const GITHUB_URL = "https://github.com/thanika19112006-max";
+export const GITHUB_URL = "https://github.com/code-by-thanika";
 export const EMAIL = "thanika19112006@gmail.com";

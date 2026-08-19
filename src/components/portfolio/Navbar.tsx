@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
-import { LINKEDIN_FEED_URL } from "./data";
+import { LINKEDIN_URL } from "./data";
 
 const links = [
   { label: "About", href: "#about" },
@@ -46,9 +46,9 @@ export function Navbar() {
 
         <div className="flex items-center gap-3">
           <a
-            href={LINKEDIN_FEED_URL}
+            href={LINKEDIN_URL}
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             className="hidden rounded-full bg-gradient-brand px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-glow)] transition-transform duration-200 hover:scale-105 md:inline-flex"
           >
             Connect
@@ -84,9 +84,9 @@ export function Navbar() {
                 </li>
               ))}
               <a
-                href={LINKEDIN_FEED_URL}
+                href={LINKEDIN_URL}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 onClick={() => setOpen(false)}
                 className="mt-2 rounded-full bg-gradient-brand px-5 py-3 text-center text-sm font-semibold text-primary-foreground"
               >
