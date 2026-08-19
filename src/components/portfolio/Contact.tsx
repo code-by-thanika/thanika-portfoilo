@@ -117,23 +117,25 @@ export function Contact() {
                 </span>
               </div>
 
-              <a
-                href={LINKEDIN_URL}
-                target="_blank"
-                rel="noreferrer"
-                className="group flex items-start gap-4"
-              >
+              <div className="flex items-start gap-4">
                 <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-gradient-brand text-primary-foreground">
                   <Linkedin className="h-5 w-5" />
                 </span>
-                <span>
-                  <span className="block text-xs uppercase tracking-wider text-muted-foreground">
-                    LinkedIn
-                  </span>
-                  <span className="block text-sm transition-colors group-hover:text-primary">
-                    LinkedIn Profile
-                  </span>
-                </span>
+                <div>
+                  <h3 className="text-base font-semibold">LinkedIn</h3>
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    Connect with me professionally
+                  </p>
+                </div>
+              </div>
+              <a
+                href={LINKEDIN_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                title="View LinkedIn Profile"
+                className="mt-5 inline-flex items-center gap-2 rounded-full bg-gradient-brand px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-transform duration-200 hover:scale-105"
+              >
+                View LinkedIn Profile <ExternalLink className="h-4 w-4" />
               </a>
             </div>
 
@@ -152,11 +154,11 @@ export function Contact() {
               <a
                 href={GITHUB_URL}
                 target="_blank"
-                rel="noreferrer"
-                title="View my GitHub"
+                rel="noopener noreferrer"
+                title="View GitHub"
                 className="mt-5 inline-flex items-center gap-2 rounded-full bg-gradient-brand px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-transform duration-200 hover:scale-105"
               >
-                Visit GitHub <ExternalLink className="h-4 w-4" />
+                View GitHub <ExternalLink className="h-4 w-4" />
               </a>
             </div>
           </motion.div>

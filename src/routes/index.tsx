@@ -16,7 +16,7 @@ import {
 
 const title = "Thanika S — Software Developer & UI/UX Designer";
 const description =
-  "Portfolio of Thanika S, a software developer and second-year B.Tech IT student building web apps and UI/UX designs.";
+  "Portfolio of Thanika S, a software developer and third-year B.Tech IT student building web apps and UI/UX designs.";
 
 export const Route = createFileRoute("/")({
   head: () => ({

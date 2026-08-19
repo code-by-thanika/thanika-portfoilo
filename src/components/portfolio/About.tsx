@@ -3,10 +3,7 @@ import { Code2, Cloud, Palette, Brain } from "lucide-react";
 import { skills } from "./data";
 
 const paragraphs = [
-  "Passionate Software Developer and second-year B.Tech IT student with foundational experience in Python and Java.",
-  "Skilled in building web applications and UI/UX design.",
-  "Strong interest in data structures, problem-solving, and cloud fundamentals.",
-  "Actively working on innovative projects in web development.",
+  "Passionate Software Developer and third-year B.Tech IT student with foundational experience in Python and Java. Skilled in building web applications and UI/UX designs, with a strong interest in artificial intelligence, data structures, problem-solving, and cloud computing. Actively working on innovative software projects and continuously improving my technical skills.",
 ];
 
 const highlights = [

@@ -27,7 +27,7 @@ export function Footer() {
               aria-label={label}
               title={label}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="glass grid h-11 w-11 place-items-center rounded-2xl text-muted-foreground transition-all duration-300 hover:scale-110 hover:text-foreground hover:shadow-[var(--shadow-glow)]"
             >
               <Icon className="h-5 w-5" />

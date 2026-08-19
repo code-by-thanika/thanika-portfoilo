@@ -6,9 +6,9 @@ import { roles } from "./data";
 import { GitHubButton, LinkedInButton } from "./SocialButtons";
 
 const stats = [
-  { value: "16", label: "Projects" },
+  { value: "16+", label: "Projects" },
   { value: "4+", label: "UI/UX Designs" },
-  { value: "2nd", label: "Year B.Tech" },
+  { value: "3rd", label: "Year B.Tech" },
 ];
 
 function useTypedRole() {
@@ -66,8 +66,8 @@ export function Hero() {
             <span className="ml-0.5 inline-block h-6 w-[2px] translate-y-1 animate-pulse bg-primary align-middle" />
           </p>
           <p className="mt-4 max-w-lg text-base leading-relaxed text-muted-foreground">
-            Passionate Software Developer and second-year B.Tech IT student building web apps and
-            UI/UX designs, with a love for data structures and cloud fundamentals.
+            Passionate Software Developer and third-year B.Tech IT student building web
+            applications, AI-powered solutions, and modern UI/UX experiences.
           </p>
 
           <div className="mt-9 flex flex-wrap gap-4">
